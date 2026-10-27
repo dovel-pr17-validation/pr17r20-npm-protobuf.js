@@ -1,0 +1,564 @@
+/*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-mixed-operators, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars, default-case, jsdoc/require-param*/
+"use strict";
+
+var $protobuf = require("../../minimal");
+
+// Common aliases
+var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+var $Object = $util.global.Object, $undefined = $util.global.undefined, $Error = $util.global.Error, $RangeError = $util.global.RangeError, $TypeError = $util.global.TypeError, $String = $util.global.String;
+
+// Exported root namespace
+var $root = $protobuf.roots["test_type_url"] || ($protobuf.roots["test_type_url"] = {});
+
+$root.TypeUrlTest = (function() {
+
+    /**
+     * Properties of a TypeUrlTest.
+     * @typedef {Object} TypeUrlTest.$Properties
+     * @property {TypeUrlTest.Nested.$Properties|null} [nested] TypeUrlTest nested
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a TypeUrlTest.
+     * @exports ITypeUrlTest
+     * @interface ITypeUrlTest
+     * @augments TypeUrlTest.$Properties
+     * @deprecated Use TypeUrlTest.$Properties instead.
+     */
+
+    /**
+     * Shape of a TypeUrlTest.
+     * @typedef {TypeUrlTest.$Properties} TypeUrlTest.$Shape
+     */
+
+    /**
+     * Constructs a new TypeUrlTest.
+     * @exports TypeUrlTest
+     * @classdesc Represents a TypeUrlTest.
+     * @constructor
+     * @param {TypeUrlTest.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    var TypeUrlTest = function (properties) {
+        if (properties)
+            for (var keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * TypeUrlTest nested.
+     * @member {TypeUrlTest.Nested.$Properties|null|undefined} nested
+     * @memberof TypeUrlTest
+     * @instance
+     */
+    TypeUrlTest.prototype.nested = null;
+
+    /**
+     * Creates a new TypeUrlTest instance using the specified properties.
+     * @function create
+     * @memberof TypeUrlTest
+     * @static
+     * @param {TypeUrlTest.$Properties=} [properties] Properties to set
+     * @returns {TypeUrlTest} TypeUrlTest instance
+     * @type {{
+     *   (properties: TypeUrlTest.$Shape): TypeUrlTest & TypeUrlTest.$Shape;
+     *   (properties?: TypeUrlTest.$Properties): TypeUrlTest;
+     * }}
+     */
+    TypeUrlTest.create = function(properties) {
+        return new TypeUrlTest(properties);
+    };
+
+    /**
+     * Encodes the specified TypeUrlTest message. Does not implicitly {@link TypeUrlTest.verify|verify} messages.
+     * @function encode
+     * @memberof TypeUrlTest
+     * @static
+     * @param {TypeUrlTest.$Properties} message TypeUrlTest message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    TypeUrlTest.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.nested != null && $Object.hasOwnProperty.call(message, "nested"))
+            $root.TypeUrlTest.Nested.encode(message.nested, writer.uint32(/* id 1, wireType 2 =*/10).fork(), _depth + 1).ldelim();
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (var i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified TypeUrlTest message, length delimited. Does not implicitly {@link TypeUrlTest.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof TypeUrlTest
+     * @static
+     * @param {TypeUrlTest.$Properties} message TypeUrlTest message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    TypeUrlTest.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a TypeUrlTest message from the specified reader or buffer.
+     * @function decode
+     * @memberof TypeUrlTest
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {TypeUrlTest & TypeUrlTest.$Shape} TypeUrlTest
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    TypeUrlTest.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        var end, message, value;
+        if (length === $undefined)
+            end = reader.len;
+        else {
+            end = reader.pos + length;
+            if (end > reader.len)
+                throw $RangeError("index out of range");
+            length = reader.len;
+            reader.len = end;
+        }
+        message = _target || new $root.TypeUrlTest();
+        while (reader.pos < end) {
+            var start = reader.pos;
+            var tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            var wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 2)
+                        break;
+                    message.nested = $root.TypeUrlTest.Nested.decode(reader, reader.size(), $undefined, _depth + 1, message.nested);
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (length !== $undefined) {
+            if (reader.pos !== end)
+                throw $RangeError("index out of range");
+            reader.len = length;
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a TypeUrlTest message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof TypeUrlTest
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {TypeUrlTest & TypeUrlTest.$Shape} TypeUrlTest
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    TypeUrlTest.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.size());
+    };
+
+    /**
+     * Verifies a TypeUrlTest message.
+     * @function verify
+     * @memberof TypeUrlTest
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    TypeUrlTest.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        if (message.nested != null && $Object.hasOwnProperty.call(message, "nested")) {
+            var error = $root.TypeUrlTest.Nested.verify(message.nested, _depth + 1);
+            if (error)
+                return "nested." + error;
+        }
+        return null;
+    };
+
+    /**
+     * Creates a TypeUrlTest message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof TypeUrlTest
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {TypeUrlTest} TypeUrlTest
+     */
+    TypeUrlTest.fromObject = function (object, _depth) {
+        if (object instanceof $root.TypeUrlTest)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".TypeUrlTest: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        var message = new $root.TypeUrlTest();
+        if (object.nested != null) {
+            if (!$util.isObject(object.nested))
+                throw $TypeError(".TypeUrlTest.nested: object expected");
+            message.nested = $root.TypeUrlTest.Nested.fromObject(object.nested, _depth + 1);
+        }
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a TypeUrlTest message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof TypeUrlTest
+     * @static
+     * @param {TypeUrlTest} message TypeUrlTest
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    TypeUrlTest.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        var object = {};
+        if (options.defaults)
+            object.nested = null;
+        if (message.nested != null && $Object.hasOwnProperty.call(message, "nested"))
+            object.nested = $root.TypeUrlTest.Nested.toObject(message.nested, options, _depth + 1);
+        return object;
+    };
+
+    /**
+     * Converts this TypeUrlTest to JSON.
+     * @function toJSON
+     * @memberof TypeUrlTest
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    TypeUrlTest.prototype.toJSON = function() {
+        return TypeUrlTest.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for TypeUrlTest
+     * @function getTypeUrl
+     * @memberof TypeUrlTest
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    TypeUrlTest.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/TypeUrlTest";
+    };
+
+    TypeUrlTest.Nested = (function() {
+
+        /**
+         * Properties of a Nested.
+         * @typedef {Object} TypeUrlTest.Nested.$Properties
+         * @property {string|null} [a] Nested a
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a Nested.
+         * @memberof TypeUrlTest
+         * @interface INested
+         * @augments TypeUrlTest.Nested.$Properties
+         * @deprecated Use TypeUrlTest.Nested.$Properties instead.
+         */
+
+        /**
+         * Shape of a Nested.
+         * @typedef {TypeUrlTest.Nested.$Properties} TypeUrlTest.Nested.$Shape
+         */
+
+        /**
+         * Constructs a new Nested.
+         * @memberof TypeUrlTest
+         * @classdesc Represents a Nested.
+         * @constructor
+         * @param {TypeUrlTest.Nested.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+        var Nested = function (properties) {
+            if (properties)
+                for (var keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        };
+
+        /**
+         * Nested a.
+         * @member {string} a
+         * @memberof TypeUrlTest.Nested
+         * @instance
+         */
+        Nested.prototype.a = "";
+
+        /**
+         * Creates a new Nested instance using the specified properties.
+         * @function create
+         * @memberof TypeUrlTest.Nested
+         * @static
+         * @param {TypeUrlTest.Nested.$Properties=} [properties] Properties to set
+         * @returns {TypeUrlTest.Nested} Nested instance
+         * @type {{
+         *   (properties: TypeUrlTest.Nested.$Shape): TypeUrlTest.Nested & TypeUrlTest.Nested.$Shape;
+         *   (properties?: TypeUrlTest.Nested.$Properties): TypeUrlTest.Nested;
+         * }}
+         */
+        Nested.create = function(properties) {
+            return new Nested(properties);
+        };
+
+        /**
+         * Encodes the specified Nested message. Does not implicitly {@link TypeUrlTest.Nested.verify|verify} messages.
+         * @function encode
+         * @memberof TypeUrlTest.Nested
+         * @static
+         * @param {TypeUrlTest.Nested.$Properties} message Nested message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Nested.encode = function (message, writer, _depth) {
+            if (!writer)
+                writer = $Writer.create();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.a != null && $Object.hasOwnProperty.call(message, "a") && message.a !== "")
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.a);
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (var i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Nested message, length delimited. Does not implicitly {@link TypeUrlTest.Nested.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof TypeUrlTest.Nested
+         * @static
+         * @param {TypeUrlTest.Nested.$Properties} message Nested message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Nested.encodeDelimited = function(message, writer) {
+            return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+        };
+
+        /**
+         * Decodes a Nested message from the specified reader or buffer.
+         * @function decode
+         * @memberof TypeUrlTest.Nested
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {TypeUrlTest.Nested & TypeUrlTest.Nested.$Shape} Nested
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Nested.decode = function (reader, length, _end, _depth, _target) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            var end, message, value;
+            if (length === $undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw $RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = _target || new $root.TypeUrlTest.Nested();
+            while (reader.pos < end) {
+                var start = reader.pos;
+                var tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
+                    break;
+                }
+                var wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 1: {
+                        if (wireType !== 2)
+                            break;
+                        if ((value = reader.stringVerify()).length)
+                            message.a = value;
+                        else
+                            delete message.a;
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
+            }
+            if (length !== $undefined) {
+                if (reader.pos !== end)
+                    throw $RangeError("index out of range");
+                reader.len = length;
+            }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
+            return message;
+        };
+
+        /**
+         * Decodes a Nested message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof TypeUrlTest.Nested
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {TypeUrlTest.Nested & TypeUrlTest.Nested.$Shape} Nested
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Nested.decodeDelimited = function(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.size());
+        };
+
+        /**
+         * Verifies a Nested message.
+         * @function verify
+         * @memberof TypeUrlTest.Nested
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Nested.verify = function (message, _depth) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.a != null && $Object.hasOwnProperty.call(message, "a"))
+                if (!$util.isString(message.a))
+                    return "a: string expected";
+            return null;
+        };
+
+        /**
+         * Creates a Nested message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof TypeUrlTest.Nested
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {TypeUrlTest.Nested} Nested
+         */
+        Nested.fromObject = function (object, _depth) {
+            if (object instanceof $root.TypeUrlTest.Nested)
+                return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".TypeUrlTest.Nested: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            var message = new $root.TypeUrlTest.Nested();
+            if (object.a != null)
+                if (typeof object.a !== "string" || object.a.length)
+                    message.a = $String(object.a);
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Nested message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof TypeUrlTest.Nested
+         * @static
+         * @param {TypeUrlTest.Nested} message Nested
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Nested.toObject = function (message, options, _depth) {
+            if (!options)
+                options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            var object = {};
+            if (options.defaults)
+                object.a = "";
+            if (message.a != null && $Object.hasOwnProperty.call(message, "a"))
+                object.a = message.a;
+            return object;
+        };
+
+        /**
+         * Converts this Nested to JSON.
+         * @function toJSON
+         * @memberof TypeUrlTest.Nested
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Nested.prototype.toJSON = function() {
+            return Nested.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the type url for Nested
+         * @function getTypeUrl
+         * @memberof TypeUrlTest.Nested
+         * @static
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
+         */
+        Nested.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/TypeUrlTest.Nested";
+        };
+
+        return Nested;
+    })();
+
+    return TypeUrlTest;
+})();
+
+module.exports = $root;

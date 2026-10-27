@@ -1,0 +1,46 @@
+{
+    "tags": {
+        "allowUnknownTags": true
+    },
+    "source": {
+        "include": [
+            "./src/"
+        ],
+        "exclude": [],
+        "includePattern": ".+\\.js(doc)?$",
+        "excludePattern": "(^|\\/|\\\\)_"
+    },
+    "plugins": [
+        "./cli/lib/tsd-jsdoc/patch",
+        "./node_modules/jsdoc/plugins/markdown"
+    ],
+    "templates": {
+        "cleverLinks"   : false,
+        "monospaceLinks": false,
+        "default"       : {
+            "outputSourceFiles" : false
+        },
+        "applicationName": "protobuf.js",
+        "applicationSubtitle": "API documentation",
+        "meta": {
+            "title": "protobuf.js API documentation"
+        },
+        "linenums"      : true
+    },
+    "markdown"  : {
+        "parser"        : "gfm",
+        "hardwrap"      : true,
+        "idInHeadings"  : true
+    },
+    "opts": {
+        "encoding"      : "utf8",
+        "recurse"       : true,
+        "private"       : false,
+        "lenient"       : false,
+        "destination"   : "./docs",
+        "template"      : "./lib/jsdoc-template",
+        "sourceRoot"    : "https://github.com/protobufjs/protobuf.js/blob/master/src/",
+        "repo"          : "https://github.com/protobufjs/protobuf.js",
+        "repoBranch"    : "master"
+    }
+}

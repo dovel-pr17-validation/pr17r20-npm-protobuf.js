@@ -1,0 +1,639 @@
+/*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-mixed-operators, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars, default-case, jsdoc/require-param*/
+"use strict";
+
+var $protobuf = require("../../minimal");
+
+// Common aliases
+var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+var $Object = $util.global.Object, $undefined = $util.global.undefined, $Error = $util.global.Error, $RangeError = $util.global.RangeError, $TypeError = $util.global.TypeError, $String = $util.global.String, $Number = $util.global.Number;
+
+// Exported root namespace
+var $root = $protobuf.roots["test_rpc"] || ($protobuf.roots["test_rpc"] = {});
+
+$root.MyService = (function() {
+
+    /**
+     * Constructs a new MyService service.
+     * @exports MyService
+     * @classdesc Represents a MyService
+     * @extends $protobuf.rpc.Service
+     * @constructor
+     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+     */
+    var MyService = function(rpcImpl, requestDelimited, responseDelimited) {
+        $protobuf.rpc.Service.call(this, rpcImpl, requestDelimited, responseDelimited);
+    };
+
+    $Object.defineProperty(MyService.prototype = $Object.create($protobuf.rpc.Service.prototype), "constructor", { value: MyService, writable: true, enumerable: false, configurable: true });
+
+    /**
+     * Creates new MyService service using the specified rpc implementation.
+     * @function create
+     * @memberof MyService
+     * @static
+     * @param {$protobuf.RPCImpl} rpcImpl RPC implementation
+     * @param {boolean} [requestDelimited=false] Whether requests are length-delimited
+     * @param {boolean} [responseDelimited=false] Whether responses are length-delimited
+     * @returns {MyService} RPC service. Useful where requests and/or responses are streamed.
+     */
+    MyService.create = function(rpcImpl, requestDelimited, responseDelimited) {
+        return new this(rpcImpl, requestDelimited, responseDelimited);
+    };
+
+    /**
+     * Callback as used by {@link MyService#myMethod}.
+     * @memberof MyService
+     * @typedef MyMethodCallback
+     * @type {function}
+     * @param {Error|null} error Error, if any
+     * @param {MyResponse} [response] MyResponse
+     */
+
+    /**
+     * Calls MyMethod.
+     * @memberof MyService
+     * @typedef MyMethod
+     * @type {{
+     *   (request: IMyRequest, callback: MyService.MyMethodCallback): void;
+     *   (request: IMyRequest): Promise<MyResponse>;
+     *   readonly name: "MyMethod";
+     *   readonly path: "/MyService/MyMethod";
+     *   readonly requestType: "MyRequest";
+     *   readonly responseType: "MyResponse";
+     *   readonly requestStream: undefined;
+     *   readonly responseStream: undefined;
+     * }}
+     */
+
+    /**
+     * Calls MyMethod.
+     * @name MyService#myMethod
+     * @type {MyService.MyMethod}
+     */
+    $Object.defineProperties(MyService.prototype.myMethod = function(request, callback) {
+        return $protobuf.rpc.Service.prototype.rpcCall.call(this, MyService.prototype.myMethod, $root.MyRequest, $root.MyResponse, request, callback);
+    }, {
+        name: { value: "MyMethod" },
+        path: { value: "/MyService/MyMethod" },
+        requestType: { value: "MyRequest" },
+        responseType: { value: "MyResponse" },
+        requestStream: { value: $undefined },
+        responseStream: { value: $undefined }
+    });
+
+    return MyService;
+})();
+
+$root.MyRequest = (function() {
+
+    /**
+     * Properties of a MyRequest.
+     * @typedef {Object} MyRequest.$Properties
+     * @property {string|null} [path] MyRequest path
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a MyRequest.
+     * @exports IMyRequest
+     * @interface IMyRequest
+     * @augments MyRequest.$Properties
+     * @deprecated Use MyRequest.$Properties instead.
+     */
+
+    /**
+     * Shape of a MyRequest.
+     * @typedef {MyRequest.$Properties} MyRequest.$Shape
+     */
+
+    /**
+     * Constructs a new MyRequest.
+     * @exports MyRequest
+     * @classdesc Represents a MyRequest.
+     * @constructor
+     * @param {MyRequest.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    var MyRequest = function (properties) {
+        if (properties)
+            for (var keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * MyRequest path.
+     * @member {string} path
+     * @memberof MyRequest
+     * @instance
+     */
+    MyRequest.prototype.path = "";
+
+    /**
+     * Creates a new MyRequest instance using the specified properties.
+     * @function create
+     * @memberof MyRequest
+     * @static
+     * @param {MyRequest.$Properties=} [properties] Properties to set
+     * @returns {MyRequest} MyRequest instance
+     * @type {{
+     *   (properties: MyRequest.$Shape): MyRequest & MyRequest.$Shape;
+     *   (properties?: MyRequest.$Properties): MyRequest;
+     * }}
+     */
+    MyRequest.create = function(properties) {
+        return new MyRequest(properties);
+    };
+
+    /**
+     * Encodes the specified MyRequest message. Does not implicitly {@link MyRequest.verify|verify} messages.
+     * @function encode
+     * @memberof MyRequest
+     * @static
+     * @param {MyRequest.$Properties} message MyRequest message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    MyRequest.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.path != null && $Object.hasOwnProperty.call(message, "path") && message.path !== "")
+            writer.uint32(/* id 1, wireType 2 =*/10).string(message.path);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (var i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified MyRequest message, length delimited. Does not implicitly {@link MyRequest.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof MyRequest
+     * @static
+     * @param {MyRequest.$Properties} message MyRequest message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    MyRequest.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a MyRequest message from the specified reader or buffer.
+     * @function decode
+     * @memberof MyRequest
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {MyRequest & MyRequest.$Shape} MyRequest
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    MyRequest.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        var end, message, value;
+        if (length === $undefined)
+            end = reader.len;
+        else {
+            end = reader.pos + length;
+            if (end > reader.len)
+                throw $RangeError("index out of range");
+            length = reader.len;
+            reader.len = end;
+        }
+        message = _target || new $root.MyRequest();
+        while (reader.pos < end) {
+            var start = reader.pos;
+            var tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            var wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 1: {
+                    if (wireType !== 2)
+                        break;
+                    if ((value = reader.stringVerify()).length)
+                        message.path = value;
+                    else
+                        delete message.path;
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (length !== $undefined) {
+            if (reader.pos !== end)
+                throw $RangeError("index out of range");
+            reader.len = length;
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a MyRequest message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof MyRequest
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {MyRequest & MyRequest.$Shape} MyRequest
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    MyRequest.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.size());
+    };
+
+    /**
+     * Verifies a MyRequest message.
+     * @function verify
+     * @memberof MyRequest
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    MyRequest.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        if (message.path != null && $Object.hasOwnProperty.call(message, "path"))
+            if (!$util.isString(message.path))
+                return "path: string expected";
+        return null;
+    };
+
+    /**
+     * Creates a MyRequest message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof MyRequest
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {MyRequest} MyRequest
+     */
+    MyRequest.fromObject = function (object, _depth) {
+        if (object instanceof $root.MyRequest)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".MyRequest: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        var message = new $root.MyRequest();
+        if (object.path != null)
+            if (typeof object.path !== "string" || object.path.length)
+                message.path = $String(object.path);
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a MyRequest message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof MyRequest
+     * @static
+     * @param {MyRequest} message MyRequest
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    MyRequest.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        var object = {};
+        if (options.defaults)
+            object.path = "";
+        if (message.path != null && $Object.hasOwnProperty.call(message, "path"))
+            object.path = message.path;
+        return object;
+    };
+
+    /**
+     * Converts this MyRequest to JSON.
+     * @function toJSON
+     * @memberof MyRequest
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    MyRequest.prototype.toJSON = function() {
+        return MyRequest.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for MyRequest
+     * @function getTypeUrl
+     * @memberof MyRequest
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    MyRequest.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/MyRequest";
+    };
+
+    return MyRequest;
+})();
+
+$root.MyResponse = (function() {
+
+    /**
+     * Properties of a MyResponse.
+     * @typedef {Object} MyResponse.$Properties
+     * @property {number|null} [status] MyResponse status
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+
+    /**
+     * Properties of a MyResponse.
+     * @exports IMyResponse
+     * @interface IMyResponse
+     * @augments MyResponse.$Properties
+     * @deprecated Use MyResponse.$Properties instead.
+     */
+
+    /**
+     * Shape of a MyResponse.
+     * @typedef {MyResponse.$Properties} MyResponse.$Shape
+     */
+
+    /**
+     * Constructs a new MyResponse.
+     * @exports MyResponse
+     * @classdesc Represents a MyResponse.
+     * @constructor
+     * @param {MyResponse.$Properties=} [properties] Properties to set
+     * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+     */
+    var MyResponse = function (properties) {
+        if (properties)
+            for (var keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                    this[keys[i]] = properties[keys[i]];
+    };
+
+    /**
+     * MyResponse status.
+     * @member {number} status
+     * @memberof MyResponse
+     * @instance
+     */
+    MyResponse.prototype.status = 0;
+
+    /**
+     * Creates a new MyResponse instance using the specified properties.
+     * @function create
+     * @memberof MyResponse
+     * @static
+     * @param {MyResponse.$Properties=} [properties] Properties to set
+     * @returns {MyResponse} MyResponse instance
+     * @type {{
+     *   (properties: MyResponse.$Shape): MyResponse & MyResponse.$Shape;
+     *   (properties?: MyResponse.$Properties): MyResponse;
+     * }}
+     */
+    MyResponse.create = function(properties) {
+        return new MyResponse(properties);
+    };
+
+    /**
+     * Encodes the specified MyResponse message. Does not implicitly {@link MyResponse.verify|verify} messages.
+     * @function encode
+     * @memberof MyResponse
+     * @static
+     * @param {MyResponse.$Properties} message MyResponse message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    MyResponse.encode = function (message, writer, _depth) {
+        if (!writer)
+            writer = $Writer.create();
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        if (message.status != null && $Object.hasOwnProperty.call(message, "status") && message.status !== 0)
+            writer.uint32(/* id 2, wireType 0 =*/16).int32(message.status);
+        if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+            for (var i = 0; i < message.$unknowns.length; ++i)
+                writer.raw(message.$unknowns[i]);
+        return writer;
+    };
+
+    /**
+     * Encodes the specified MyResponse message, length delimited. Does not implicitly {@link MyResponse.verify|verify} messages.
+     * @function encodeDelimited
+     * @memberof MyResponse
+     * @static
+     * @param {MyResponse.$Properties} message MyResponse message or plain object to encode
+     * @param {$protobuf.Writer} [writer] Writer to encode to
+     * @returns {$protobuf.Writer} Writer
+     */
+    MyResponse.encodeDelimited = function(message, writer) {
+        return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+    };
+
+    /**
+     * Decodes a MyResponse message from the specified reader or buffer.
+     * @function decode
+     * @memberof MyResponse
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @param {number} [length] Message length if known beforehand
+     * @returns {MyResponse & MyResponse.$Shape} MyResponse
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    MyResponse.decode = function (reader, length, _end, _depth, _target) {
+        if (!(reader instanceof $Reader))
+            reader = $Reader.create(reader);
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $Reader.recursionLimit)
+            throw $Error("max depth exceeded");
+        var end, message, value;
+        if (length === $undefined)
+            end = reader.len;
+        else {
+            end = reader.pos + length;
+            if (end > reader.len)
+                throw $RangeError("index out of range");
+            length = reader.len;
+            reader.len = end;
+        }
+        message = _target || new $root.MyResponse();
+        while (reader.pos < end) {
+            var start = reader.pos;
+            var tag = reader.tag();
+            if (tag === _end) {
+                _end = $undefined;
+                break;
+            }
+            var wireType = tag & 7;
+            switch (tag >>>= 3) {
+            case 2: {
+                    if (wireType !== 0)
+                        break;
+                    if (value = reader.int32())
+                        message.status = value;
+                    else
+                        delete message.status;
+                    continue;
+                }
+            }
+            reader.skipType(wireType, _depth, tag);
+            if (!reader.discardUnknown) {
+                $util.makeProp(message, "$unknowns", false);
+                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+            }
+        }
+        if (length !== $undefined) {
+            if (reader.pos !== end)
+                throw $RangeError("index out of range");
+            reader.len = length;
+        }
+        if (_end !== $undefined)
+            throw $Error("missing end group");
+        return message;
+    };
+
+    /**
+     * Decodes a MyResponse message from the specified reader or buffer, length delimited.
+     * @function decodeDelimited
+     * @memberof MyResponse
+     * @static
+     * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+     * @returns {MyResponse & MyResponse.$Shape} MyResponse
+     * @throws {Error} If the payload is not a reader or valid buffer
+     * @throws {$protobuf.util.ProtocolError} If required fields are missing
+     */
+    MyResponse.decodeDelimited = function(reader) {
+        if (!(reader instanceof $Reader))
+            reader = new $Reader(reader);
+        return this.decode(reader, reader.size());
+    };
+
+    /**
+     * Verifies a MyResponse message.
+     * @function verify
+     * @memberof MyResponse
+     * @static
+     * @param {Object.<string,*>} message Plain object to verify
+     * @returns {string|null} `null` if valid, otherwise the reason why it is not
+     */
+    MyResponse.verify = function (message, _depth) {
+        if (typeof message !== "object" || message === null)
+            return "object expected";
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            return "max depth exceeded";
+        if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
+            if (!$util.isInteger(message.status))
+                return "status: integer expected";
+        return null;
+    };
+
+    /**
+     * Creates a MyResponse message from a plain object. Also converts values to their respective internal types.
+     * @function fromObject
+     * @memberof MyResponse
+     * @static
+     * @param {Object.<string,*>} object Plain object
+     * @returns {MyResponse} MyResponse
+     */
+    MyResponse.fromObject = function (object, _depth) {
+        if (object instanceof $root.MyResponse)
+            return object;
+        if (!$util.isObject(object))
+            throw $TypeError(".MyResponse: object expected");
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        var message = new $root.MyResponse();
+        if (object.status != null)
+            if ($Number(object.status) !== 0)
+                message.status = object.status | 0;
+        return message;
+    };
+
+    /**
+     * Creates a plain object from a MyResponse message. Also converts values to other types if specified.
+     * @function toObject
+     * @memberof MyResponse
+     * @static
+     * @param {MyResponse} message MyResponse
+     * @param {$protobuf.IConversionOptions} [options] Conversion options
+     * @returns {Object.<string,*>} Plain object
+     */
+    MyResponse.toObject = function (message, options, _depth) {
+        if (!options)
+            options = {};
+        if (_depth === $undefined)
+            _depth = 0;
+        if (_depth > $util.recursionLimit)
+            throw $Error("max depth exceeded");
+        var object = {};
+        if (options.defaults)
+            object.status = 0;
+        if (message.status != null && $Object.hasOwnProperty.call(message, "status"))
+            object.status = message.status;
+        return object;
+    };
+
+    /**
+     * Converts this MyResponse to JSON.
+     * @function toJSON
+     * @memberof MyResponse
+     * @instance
+     * @returns {Object.<string,*>} JSON object
+     */
+    MyResponse.prototype.toJSON = function() {
+        return MyResponse.toObject(this, $protobuf.util.toJSONOptions);
+    };
+
+    /**
+     * Gets the type url for MyResponse
+     * @function getTypeUrl
+     * @memberof MyResponse
+     * @static
+     * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+     * @returns {string} The type url
+     */
+    MyResponse.getTypeUrl = function(prefix) {
+        if (prefix === $undefined)
+            prefix = "type.googleapis.com";
+        return prefix + "/MyResponse";
+    };
+
+    return MyResponse;
+})();
+
+module.exports = $root;

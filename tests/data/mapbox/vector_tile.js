@@ -1,0 +1,1699 @@
+/*eslint-disable block-scoped-var, id-length, no-control-regex, no-magic-numbers, no-mixed-operators, no-prototype-builtins, no-redeclare, no-shadow, no-var, sort-vars, default-case, jsdoc/require-param*/
+"use strict";
+
+var $protobuf = require("../../../minimal");
+
+// Common aliases
+var $Reader = $protobuf.Reader, $Writer = $protobuf.Writer, $util = $protobuf.util;
+var $Object = $util.global.Object, $undefined = $util.global.undefined, $Error = $util.global.Error, $RangeError = $util.global.RangeError, $Array = $util.global.Array, $TypeError = $util.global.TypeError, $String = $util.global.String, $Number = $util.global.Number, $parseInt = $util.global.parseInt, $Boolean = $util.global.Boolean, $BigInt = $util.global.BigInt, $isFinite = $util.global.isFinite;
+
+// Exported root namespace
+var $root = $protobuf.roots["test_vector_tile"] || ($protobuf.roots["test_vector_tile"] = {});
+
+$root.vector_tile = (function() {
+
+    /**
+     * Namespace vector_tile.
+     * @exports vector_tile
+     * @namespace
+     */
+    var vector_tile = {};
+
+    vector_tile.Tile = (function() {
+
+        /**
+         * Properties of a Tile.
+         * @typedef {Object} vector_tile.Tile.$Properties
+         * @property {Array.<vector_tile.Tile.Layer.$Properties>|null} [layers] Tile layers
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+
+        /**
+         * Properties of a Tile.
+         * @memberof vector_tile
+         * @interface ITile
+         * @augments vector_tile.Tile.$Properties
+         * @deprecated Use vector_tile.Tile.$Properties instead.
+         */
+
+        /**
+         * Shape of a Tile.
+         * @typedef {vector_tile.Tile.$Properties} vector_tile.Tile.$Shape
+         */
+
+        /**
+         * Constructs a new Tile.
+         * @memberof vector_tile
+         * @classdesc Represents a Tile.
+         * @constructor
+         * @param {vector_tile.Tile.$Properties=} [properties] Properties to set
+         * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+         */
+        var Tile = function (properties) {
+            this.layers = [];
+            if (properties)
+                for (var keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                    if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                        this[keys[i]] = properties[keys[i]];
+        };
+
+        /**
+         * Tile layers.
+         * @member {Array.<vector_tile.Tile.Layer.$Properties>} layers
+         * @memberof vector_tile.Tile
+         * @instance
+         */
+        Tile.prototype.layers = $util.emptyArray;
+
+        /**
+         * Creates a new Tile instance using the specified properties.
+         * @function create
+         * @memberof vector_tile.Tile
+         * @static
+         * @param {vector_tile.Tile.$Properties=} [properties] Properties to set
+         * @returns {vector_tile.Tile} Tile instance
+         * @type {{
+         *   (properties: vector_tile.Tile.$Shape): vector_tile.Tile & vector_tile.Tile.$Shape;
+         *   (properties?: vector_tile.Tile.$Properties): vector_tile.Tile;
+         * }}
+         */
+        Tile.create = function(properties) {
+            return new Tile(properties);
+        };
+
+        /**
+         * Encodes the specified Tile message. Does not implicitly {@link vector_tile.Tile.verify|verify} messages.
+         * @function encode
+         * @memberof vector_tile.Tile
+         * @static
+         * @param {vector_tile.Tile.$Properties} message Tile message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Tile.encode = function (message, writer, _depth) {
+            if (!writer)
+                writer = $Writer.create();
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            if (message.layers != null && message.layers.length)
+                for (var i = 0; i < message.layers.length; ++i)
+                    $root.vector_tile.Tile.Layer.encode(message.layers[i], writer.uint32(/* id 3, wireType 2 =*/26).fork(), _depth + 1).ldelim();
+            if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                for (var i = 0; i < message.$unknowns.length; ++i)
+                    writer.raw(message.$unknowns[i]);
+            return writer;
+        };
+
+        /**
+         * Encodes the specified Tile message, length delimited. Does not implicitly {@link vector_tile.Tile.verify|verify} messages.
+         * @function encodeDelimited
+         * @memberof vector_tile.Tile
+         * @static
+         * @param {vector_tile.Tile.$Properties} message Tile message or plain object to encode
+         * @param {$protobuf.Writer} [writer] Writer to encode to
+         * @returns {$protobuf.Writer} Writer
+         */
+        Tile.encodeDelimited = function(message, writer) {
+            return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+        };
+
+        /**
+         * Decodes a Tile message from the specified reader or buffer.
+         * @function decode
+         * @memberof vector_tile.Tile
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @param {number} [length] Message length if known beforehand
+         * @returns {vector_tile.Tile & vector_tile.Tile.$Shape} Tile
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Tile.decode = function (reader, length, _end, _depth, _target) {
+            if (!(reader instanceof $Reader))
+                reader = $Reader.create(reader);
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $Reader.recursionLimit)
+                throw $Error("max depth exceeded");
+            var end, message;
+            if (length === $undefined)
+                end = reader.len;
+            else {
+                end = reader.pos + length;
+                if (end > reader.len)
+                    throw $RangeError("index out of range");
+                length = reader.len;
+                reader.len = end;
+            }
+            message = _target || new $root.vector_tile.Tile();
+            while (reader.pos < end) {
+                var start = reader.pos;
+                var tag = reader.tag();
+                if (tag === _end) {
+                    _end = $undefined;
+                    break;
+                }
+                var wireType = tag & 7;
+                switch (tag >>>= 3) {
+                case 3: {
+                        if (wireType !== 2)
+                            break;
+                        if (!(message.layers && message.layers.length))
+                            message.layers = [];
+                        message.layers.push($root.vector_tile.Tile.Layer.decode(reader, reader.size(), $undefined, _depth + 1));
+                        continue;
+                    }
+                }
+                reader.skipType(wireType, _depth, tag);
+                if (!reader.discardUnknown) {
+                    $util.makeProp(message, "$unknowns", false);
+                    (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                }
+            }
+            if (length !== $undefined) {
+                if (reader.pos !== end)
+                    throw $RangeError("index out of range");
+                reader.len = length;
+            }
+            if (_end !== $undefined)
+                throw $Error("missing end group");
+            return message;
+        };
+
+        /**
+         * Decodes a Tile message from the specified reader or buffer, length delimited.
+         * @function decodeDelimited
+         * @memberof vector_tile.Tile
+         * @static
+         * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+         * @returns {vector_tile.Tile & vector_tile.Tile.$Shape} Tile
+         * @throws {Error} If the payload is not a reader or valid buffer
+         * @throws {$protobuf.util.ProtocolError} If required fields are missing
+         */
+        Tile.decodeDelimited = function(reader) {
+            if (!(reader instanceof $Reader))
+                reader = new $Reader(reader);
+            return this.decode(reader, reader.size());
+        };
+
+        /**
+         * Verifies a Tile message.
+         * @function verify
+         * @memberof vector_tile.Tile
+         * @static
+         * @param {Object.<string,*>} message Plain object to verify
+         * @returns {string|null} `null` if valid, otherwise the reason why it is not
+         */
+        Tile.verify = function (message, _depth) {
+            if (typeof message !== "object" || message === null)
+                return "object expected";
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                return "max depth exceeded";
+            if (message.layers != null && $Object.hasOwnProperty.call(message, "layers")) {
+                if (!$Array.isArray(message.layers))
+                    return "layers: array expected";
+                for (var i = 0; i < message.layers.length; ++i) {
+                    var error = $root.vector_tile.Tile.Layer.verify(message.layers[i], _depth + 1);
+                    if (error)
+                        return "layers." + error;
+                }
+            }
+            return null;
+        };
+
+        /**
+         * Creates a Tile message from a plain object. Also converts values to their respective internal types.
+         * @function fromObject
+         * @memberof vector_tile.Tile
+         * @static
+         * @param {Object.<string,*>} object Plain object
+         * @returns {vector_tile.Tile} Tile
+         */
+        Tile.fromObject = function (object, _depth) {
+            if (object instanceof $root.vector_tile.Tile)
+                return object;
+            if (!$util.isObject(object))
+                throw $TypeError(".vector_tile.Tile: object expected");
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            var message = new $root.vector_tile.Tile();
+            if (object.layers) {
+                if (!$Array.isArray(object.layers))
+                    throw $TypeError(".vector_tile.Tile.layers: array expected");
+                message.layers = $Array(object.layers.length);
+                for (var i = 0; i < object.layers.length; ++i) {
+                    if (!$util.isObject(object.layers[i]))
+                        throw $TypeError(".vector_tile.Tile.layers: object expected");
+                    message.layers[i] = $root.vector_tile.Tile.Layer.fromObject(object.layers[i], _depth + 1);
+                }
+            }
+            return message;
+        };
+
+        /**
+         * Creates a plain object from a Tile message. Also converts values to other types if specified.
+         * @function toObject
+         * @memberof vector_tile.Tile
+         * @static
+         * @param {vector_tile.Tile} message Tile
+         * @param {$protobuf.IConversionOptions} [options] Conversion options
+         * @returns {Object.<string,*>} Plain object
+         */
+        Tile.toObject = function (message, options, _depth) {
+            if (!options)
+                options = {};
+            if (_depth === $undefined)
+                _depth = 0;
+            if (_depth > $util.recursionLimit)
+                throw $Error("max depth exceeded");
+            var object = {};
+            if (options.arrays || options.defaults)
+                object.layers = [];
+            if (message.layers && message.layers.length) {
+                object.layers = $Array(message.layers.length);
+                for (var j = 0; j < message.layers.length; ++j)
+                    object.layers[j] = $root.vector_tile.Tile.Layer.toObject(message.layers[j], options, _depth + 1);
+            }
+            return object;
+        };
+
+        /**
+         * Converts this Tile to JSON.
+         * @function toJSON
+         * @memberof vector_tile.Tile
+         * @instance
+         * @returns {Object.<string,*>} JSON object
+         */
+        Tile.prototype.toJSON = function() {
+            return Tile.toObject(this, $protobuf.util.toJSONOptions);
+        };
+
+        /**
+         * Gets the type url for Tile
+         * @function getTypeUrl
+         * @memberof vector_tile.Tile
+         * @static
+         * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+         * @returns {string} The type url
+         */
+        Tile.getTypeUrl = function(prefix) {
+            if (prefix === $undefined)
+                prefix = "type.googleapis.com";
+            return prefix + "/vector_tile.Tile";
+        };
+
+        /**
+         * GeomType enum.
+         * @name vector_tile.Tile.GeomType
+         * @enum {number}
+         * @property {number} UNKNOWN=0 UNKNOWN value
+         * @property {number} POINT=1 POINT value
+         * @property {number} LINESTRING=2 LINESTRING value
+         * @property {number} POLYGON=3 POLYGON value
+         */
+        Tile.GeomType = (function() {
+            var valuesById = $Object.create(null), values = $Object.create(valuesById);
+            values[valuesById[0] = "UNKNOWN"] = 0;
+            values[valuesById[1] = "POINT"] = 1;
+            values[valuesById[2] = "LINESTRING"] = 2;
+            values[valuesById[3] = "POLYGON"] = 3;
+            return values;
+        })();
+
+        Tile.Value = (function() {
+
+            /**
+             * Properties of a Value.
+             * @typedef {Object} vector_tile.Tile.Value.$Properties
+             * @property {string|null} [stringValue] Value stringValue
+             * @property {number|null} [floatValue] Value floatValue
+             * @property {number|null} [doubleValue] Value doubleValue
+             * @property {number|Long|null} [intValue] Value intValue
+             * @property {number|Long|null} [uintValue] Value uintValue
+             * @property {number|Long|null} [sintValue] Value sintValue
+             * @property {boolean|null} [boolValue] Value boolValue
+             * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+             */
+
+            /**
+             * Properties of a Value.
+             * @memberof vector_tile.Tile
+             * @interface IValue
+             * @augments vector_tile.Tile.Value.$Properties
+             * @deprecated Use vector_tile.Tile.Value.$Properties instead.
+             */
+
+            /**
+             * Shape of a Value.
+             * @typedef {vector_tile.Tile.Value.$Properties} vector_tile.Tile.Value.$Shape
+             */
+
+            /**
+             * Constructs a new Value.
+             * @memberof vector_tile.Tile
+             * @classdesc Represents a Value.
+             * @constructor
+             * @param {vector_tile.Tile.Value.$Properties=} [properties] Properties to set
+             * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+             */
+            var Value = function (properties) {
+                if (properties)
+                    for (var keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            };
+
+            /**
+             * Value stringValue.
+             * @member {string} stringValue
+             * @memberof vector_tile.Tile.Value
+             * @instance
+             */
+            Value.prototype.stringValue = "";
+
+            /**
+             * Value floatValue.
+             * @member {number} floatValue
+             * @memberof vector_tile.Tile.Value
+             * @instance
+             */
+            Value.prototype.floatValue = 0;
+
+            /**
+             * Value doubleValue.
+             * @member {number} doubleValue
+             * @memberof vector_tile.Tile.Value
+             * @instance
+             */
+            Value.prototype.doubleValue = 0;
+
+            /**
+             * Value intValue.
+             * @member {number|Long} intValue
+             * @memberof vector_tile.Tile.Value
+             * @instance
+             */
+            Value.prototype.intValue = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * Value uintValue.
+             * @member {number|Long} uintValue
+             * @memberof vector_tile.Tile.Value
+             * @instance
+             */
+            Value.prototype.uintValue = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+            /**
+             * Value sintValue.
+             * @member {number|Long} sintValue
+             * @memberof vector_tile.Tile.Value
+             * @instance
+             */
+            Value.prototype.sintValue = $util.Long ? $util.Long.fromBits(0,0,false) : 0;
+
+            /**
+             * Value boolValue.
+             * @member {boolean} boolValue
+             * @memberof vector_tile.Tile.Value
+             * @instance
+             */
+            Value.prototype.boolValue = false;
+
+            /**
+             * Creates a new Value instance using the specified properties.
+             * @function create
+             * @memberof vector_tile.Tile.Value
+             * @static
+             * @param {vector_tile.Tile.Value.$Properties=} [properties] Properties to set
+             * @returns {vector_tile.Tile.Value} Value instance
+             * @type {{
+             *   (properties: vector_tile.Tile.Value.$Shape): vector_tile.Tile.Value & vector_tile.Tile.Value.$Shape;
+             *   (properties?: vector_tile.Tile.Value.$Properties): vector_tile.Tile.Value;
+             * }}
+             */
+            Value.create = function(properties) {
+                return new Value(properties);
+            };
+
+            /**
+             * Encodes the specified Value message. Does not implicitly {@link vector_tile.Tile.Value.verify|verify} messages.
+             * @function encode
+             * @memberof vector_tile.Tile.Value
+             * @static
+             * @param {vector_tile.Tile.Value.$Properties} message Value message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Value.encode = function (message, writer, _depth) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $util.recursionLimit)
+                    throw $Error("max depth exceeded");
+                if (message.stringValue != null && $Object.hasOwnProperty.call(message, "stringValue"))
+                    writer.uint32(/* id 1, wireType 2 =*/10).string(message.stringValue);
+                if (message.floatValue != null && $Object.hasOwnProperty.call(message, "floatValue"))
+                    writer.uint32(/* id 2, wireType 5 =*/21).float(message.floatValue);
+                if (message.doubleValue != null && $Object.hasOwnProperty.call(message, "doubleValue"))
+                    writer.uint32(/* id 3, wireType 1 =*/25).double(message.doubleValue);
+                if (message.intValue != null && $Object.hasOwnProperty.call(message, "intValue"))
+                    writer.uint32(/* id 4, wireType 0 =*/32).int64(message.intValue);
+                if (message.uintValue != null && $Object.hasOwnProperty.call(message, "uintValue"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).uint64(message.uintValue);
+                if (message.sintValue != null && $Object.hasOwnProperty.call(message, "sintValue"))
+                    writer.uint32(/* id 6, wireType 0 =*/48).sint64(message.sintValue);
+                if (message.boolValue != null && $Object.hasOwnProperty.call(message, "boolValue"))
+                    writer.uint32(/* id 7, wireType 0 =*/56).bool(message.boolValue);
+                if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                    for (var i = 0; i < message.$unknowns.length; ++i)
+                        writer.raw(message.$unknowns[i]);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified Value message, length delimited. Does not implicitly {@link vector_tile.Tile.Value.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof vector_tile.Tile.Value
+             * @static
+             * @param {vector_tile.Tile.Value.$Properties} message Value message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Value.encodeDelimited = function(message, writer) {
+                return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+            };
+
+            /**
+             * Decodes a Value message from the specified reader or buffer.
+             * @function decode
+             * @memberof vector_tile.Tile.Value
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {vector_tile.Tile.Value & vector_tile.Tile.Value.$Shape} Value
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Value.decode = function (reader, length, _end, _depth, _target) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $Reader.recursionLimit)
+                    throw $Error("max depth exceeded");
+                var end, message;
+                if (length === $undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw $RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = _target || new $root.vector_tile.Tile.Value();
+                while (reader.pos < end) {
+                    var start = reader.pos;
+                    var tag = reader.tag();
+                    if (tag === _end) {
+                        _end = $undefined;
+                        break;
+                    }
+                    var wireType = tag & 7;
+                    switch (tag >>>= 3) {
+                    case 1: {
+                            if (wireType !== 2)
+                                break;
+                            message.stringValue = reader.string();
+                            continue;
+                        }
+                    case 2: {
+                            if (wireType !== 5)
+                                break;
+                            message.floatValue = reader.float();
+                            continue;
+                        }
+                    case 3: {
+                            if (wireType !== 1)
+                                break;
+                            message.doubleValue = reader.double();
+                            continue;
+                        }
+                    case 4: {
+                            if (wireType !== 0)
+                                break;
+                            message.intValue = reader.int64();
+                            continue;
+                        }
+                    case 5: {
+                            if (wireType !== 0)
+                                break;
+                            message.uintValue = reader.uint64();
+                            continue;
+                        }
+                    case 6: {
+                            if (wireType !== 0)
+                                break;
+                            message.sintValue = reader.sint64();
+                            continue;
+                        }
+                    case 7: {
+                            if (wireType !== 0)
+                                break;
+                            message.boolValue = reader.bool();
+                            continue;
+                        }
+                    }
+                    reader.skipType(wireType, _depth, tag);
+                    if (!reader.discardUnknown) {
+                        $util.makeProp(message, "$unknowns", false);
+                        (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                    }
+                }
+                if (length !== $undefined) {
+                    if (reader.pos !== end)
+                        throw $RangeError("index out of range");
+                    reader.len = length;
+                }
+                if (_end !== $undefined)
+                    throw $Error("missing end group");
+                return message;
+            };
+
+            /**
+             * Decodes a Value message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof vector_tile.Tile.Value
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {vector_tile.Tile.Value & vector_tile.Tile.Value.$Shape} Value
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Value.decodeDelimited = function(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.size());
+            };
+
+            /**
+             * Verifies a Value message.
+             * @function verify
+             * @memberof vector_tile.Tile.Value
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Value.verify = function (message, _depth) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $util.recursionLimit)
+                    return "max depth exceeded";
+                if (message.stringValue != null && $Object.hasOwnProperty.call(message, "stringValue"))
+                    if (!$util.isString(message.stringValue))
+                        return "stringValue: string expected";
+                if (message.floatValue != null && $Object.hasOwnProperty.call(message, "floatValue"))
+                    if (typeof message.floatValue !== "number")
+                        return "floatValue: number expected";
+                if (message.doubleValue != null && $Object.hasOwnProperty.call(message, "doubleValue"))
+                    if (typeof message.doubleValue !== "number")
+                        return "doubleValue: number expected";
+                if (message.intValue != null && $Object.hasOwnProperty.call(message, "intValue"))
+                    if (!$util.isInteger(message.intValue) && !(message.intValue && $util.isInteger(message.intValue.low) && $util.isInteger(message.intValue.high)))
+                        return "intValue: integer|Long expected";
+                if (message.uintValue != null && $Object.hasOwnProperty.call(message, "uintValue"))
+                    if (!$util.isInteger(message.uintValue) && !(message.uintValue && $util.isInteger(message.uintValue.low) && $util.isInteger(message.uintValue.high)))
+                        return "uintValue: integer|Long expected";
+                if (message.sintValue != null && $Object.hasOwnProperty.call(message, "sintValue"))
+                    if (!$util.isInteger(message.sintValue) && !(message.sintValue && $util.isInteger(message.sintValue.low) && $util.isInteger(message.sintValue.high)))
+                        return "sintValue: integer|Long expected";
+                if (message.boolValue != null && $Object.hasOwnProperty.call(message, "boolValue"))
+                    if (typeof message.boolValue !== "boolean")
+                        return "boolValue: boolean expected";
+                return null;
+            };
+
+            /**
+             * Creates a Value message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof vector_tile.Tile.Value
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {vector_tile.Tile.Value} Value
+             */
+            Value.fromObject = function (object, _depth) {
+                if (object instanceof $root.vector_tile.Tile.Value)
+                    return object;
+                if (!$util.isObject(object))
+                    throw $TypeError(".vector_tile.Tile.Value: object expected");
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $util.recursionLimit)
+                    throw $Error("max depth exceeded");
+                var message = new $root.vector_tile.Tile.Value();
+                if (object.stringValue != null)
+                    message.stringValue = $String(object.stringValue);
+                if (object.floatValue != null)
+                    message.floatValue = $Number(object.floatValue);
+                if (object.doubleValue != null)
+                    message.doubleValue = $Number(object.doubleValue);
+                if (object.intValue != null)
+                    if ($util.Long)
+                        message.intValue = $util.Long.fromValue(object.intValue, false);
+                    else if (typeof object.intValue === "string")
+                        message.intValue = $parseInt(object.intValue, 10);
+                    else if (typeof object.intValue === "number")
+                        message.intValue = object.intValue;
+                    else if (typeof object.intValue === "object")
+                        message.intValue = new $util.LongBits(object.intValue.low >>> 0, object.intValue.high >>> 0).toNumber();
+                if (object.uintValue != null)
+                    if ($util.Long)
+                        message.uintValue = $util.Long.fromValue(object.uintValue, true);
+                    else if (typeof object.uintValue === "string")
+                        message.uintValue = $parseInt(object.uintValue, 10);
+                    else if (typeof object.uintValue === "number")
+                        message.uintValue = object.uintValue;
+                    else if (typeof object.uintValue === "object")
+                        message.uintValue = new $util.LongBits(object.uintValue.low >>> 0, object.uintValue.high >>> 0).toNumber(true);
+                if (object.sintValue != null)
+                    if ($util.Long)
+                        message.sintValue = $util.Long.fromValue(object.sintValue, false);
+                    else if (typeof object.sintValue === "string")
+                        message.sintValue = $parseInt(object.sintValue, 10);
+                    else if (typeof object.sintValue === "number")
+                        message.sintValue = object.sintValue;
+                    else if (typeof object.sintValue === "object")
+                        message.sintValue = new $util.LongBits(object.sintValue.low >>> 0, object.sintValue.high >>> 0).toNumber();
+                if (object.boolValue != null)
+                    message.boolValue = $Boolean(object.boolValue);
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a Value message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof vector_tile.Tile.Value
+             * @static
+             * @param {vector_tile.Tile.Value} message Value
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Value.toObject = function (message, options, _depth) {
+                if (!options)
+                    options = {};
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $util.recursionLimit)
+                    throw $Error("max depth exceeded");
+                var object = {};
+                if (options.defaults) {
+                    object.stringValue = "";
+                    object.floatValue = 0;
+                    object.doubleValue = 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.intValue = options.longs === $String ? long.toString() : options.longs === $Number ? long.toNumber() : typeof $BigInt !== "undefined" && options.longs === $BigInt ? long.toBigInt() : long;
+                    } else
+                        object.intValue = options.longs === $String ? "0" : typeof $BigInt !== "undefined" && options.longs === $BigInt ? $BigInt("0") : 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, true);
+                        object.uintValue = options.longs === $String ? long.toString() : options.longs === $Number ? long.toNumber() : typeof $BigInt !== "undefined" && options.longs === $BigInt ? long.toBigInt() : long;
+                    } else
+                        object.uintValue = options.longs === $String ? "0" : typeof $BigInt !== "undefined" && options.longs === $BigInt ? $BigInt("0") : 0;
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, false);
+                        object.sintValue = options.longs === $String ? long.toString() : options.longs === $Number ? long.toNumber() : typeof $BigInt !== "undefined" && options.longs === $BigInt ? long.toBigInt() : long;
+                    } else
+                        object.sintValue = options.longs === $String ? "0" : typeof $BigInt !== "undefined" && options.longs === $BigInt ? $BigInt("0") : 0;
+                    object.boolValue = false;
+                }
+                if (message.stringValue != null && $Object.hasOwnProperty.call(message, "stringValue"))
+                    object.stringValue = message.stringValue;
+                if (message.floatValue != null && $Object.hasOwnProperty.call(message, "floatValue"))
+                    object.floatValue = options.json && !$isFinite(message.floatValue) ? $String(message.floatValue) : message.floatValue;
+                if (message.doubleValue != null && $Object.hasOwnProperty.call(message, "doubleValue"))
+                    object.doubleValue = options.json && !$isFinite(message.doubleValue) ? $String(message.doubleValue) : message.doubleValue;
+                if (message.intValue != null && $Object.hasOwnProperty.call(message, "intValue"))
+                    if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                        object.intValue = typeof message.intValue === "number" ? $BigInt(message.intValue) : $util.Long.fromBits(message.intValue.low >>> 0, message.intValue.high >>> 0, false).toBigInt();
+                    else if (typeof message.intValue === "number")
+                        object.intValue = options.longs === $String ? $String(message.intValue) : message.intValue;
+                    else
+                        object.intValue = options.longs === $String ? $util.Long.prototype.toString.call(message.intValue) : options.longs === $Number ? new $util.LongBits(message.intValue.low >>> 0, message.intValue.high >>> 0).toNumber() : message.intValue;
+                if (message.uintValue != null && $Object.hasOwnProperty.call(message, "uintValue"))
+                    if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                        object.uintValue = typeof message.uintValue === "number" ? $BigInt(message.uintValue) : $util.Long.fromBits(message.uintValue.low >>> 0, message.uintValue.high >>> 0, true).toBigInt();
+                    else if (typeof message.uintValue === "number")
+                        object.uintValue = options.longs === $String ? $String(message.uintValue) : message.uintValue;
+                    else
+                        object.uintValue = options.longs === $String ? $util.Long.prototype.toString.call(message.uintValue) : options.longs === $Number ? new $util.LongBits(message.uintValue.low >>> 0, message.uintValue.high >>> 0).toNumber(true) : message.uintValue;
+                if (message.sintValue != null && $Object.hasOwnProperty.call(message, "sintValue"))
+                    if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                        object.sintValue = typeof message.sintValue === "number" ? $BigInt(message.sintValue) : $util.Long.fromBits(message.sintValue.low >>> 0, message.sintValue.high >>> 0, false).toBigInt();
+                    else if (typeof message.sintValue === "number")
+                        object.sintValue = options.longs === $String ? $String(message.sintValue) : message.sintValue;
+                    else
+                        object.sintValue = options.longs === $String ? $util.Long.prototype.toString.call(message.sintValue) : options.longs === $Number ? new $util.LongBits(message.sintValue.low >>> 0, message.sintValue.high >>> 0).toNumber() : message.sintValue;
+                if (message.boolValue != null && $Object.hasOwnProperty.call(message, "boolValue"))
+                    object.boolValue = message.boolValue;
+                return object;
+            };
+
+            /**
+             * Converts this Value to JSON.
+             * @function toJSON
+             * @memberof vector_tile.Tile.Value
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Value.prototype.toJSON = function() {
+                return Value.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the type url for Value
+             * @function getTypeUrl
+             * @memberof vector_tile.Tile.Value
+             * @static
+             * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+             * @returns {string} The type url
+             */
+            Value.getTypeUrl = function(prefix) {
+                if (prefix === $undefined)
+                    prefix = "type.googleapis.com";
+                return prefix + "/vector_tile.Tile.Value";
+            };
+
+            return Value;
+        })();
+
+        Tile.Feature = (function() {
+
+            /**
+             * Properties of a Feature.
+             * @typedef {Object} vector_tile.Tile.Feature.$Properties
+             * @property {number|Long|null} [id] Feature id
+             * @property {Array.<number>|null} [tags] Feature tags
+             * @property {vector_tile.Tile.GeomType|null} [type] Feature type
+             * @property {Array.<number>|null} [geometry] Feature geometry
+             * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+             */
+
+            /**
+             * Properties of a Feature.
+             * @memberof vector_tile.Tile
+             * @interface IFeature
+             * @augments vector_tile.Tile.Feature.$Properties
+             * @deprecated Use vector_tile.Tile.Feature.$Properties instead.
+             */
+
+            /**
+             * Shape of a Feature.
+             * @typedef {vector_tile.Tile.Feature.$Properties} vector_tile.Tile.Feature.$Shape
+             */
+
+            /**
+             * Constructs a new Feature.
+             * @memberof vector_tile.Tile
+             * @classdesc Represents a Feature.
+             * @constructor
+             * @param {vector_tile.Tile.Feature.$Properties=} [properties] Properties to set
+             * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+             */
+            var Feature = function (properties) {
+                this.tags = [];
+                this.geometry = [];
+                if (properties)
+                    for (var keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            };
+
+            /**
+             * Feature id.
+             * @member {number|Long} id
+             * @memberof vector_tile.Tile.Feature
+             * @instance
+             */
+            Feature.prototype.id = $util.Long ? $util.Long.fromBits(0,0,true) : 0;
+
+            /**
+             * Feature tags.
+             * @member {Array.<number>} tags
+             * @memberof vector_tile.Tile.Feature
+             * @instance
+             */
+            Feature.prototype.tags = $util.emptyArray;
+
+            /**
+             * Feature type.
+             * @member {vector_tile.Tile.GeomType} type
+             * @memberof vector_tile.Tile.Feature
+             * @instance
+             */
+            Feature.prototype.type = 0;
+
+            /**
+             * Feature geometry.
+             * @member {Array.<number>} geometry
+             * @memberof vector_tile.Tile.Feature
+             * @instance
+             */
+            Feature.prototype.geometry = $util.emptyArray;
+
+            /**
+             * Creates a new Feature instance using the specified properties.
+             * @function create
+             * @memberof vector_tile.Tile.Feature
+             * @static
+             * @param {vector_tile.Tile.Feature.$Properties=} [properties] Properties to set
+             * @returns {vector_tile.Tile.Feature} Feature instance
+             * @type {{
+             *   (properties: vector_tile.Tile.Feature.$Shape): vector_tile.Tile.Feature & vector_tile.Tile.Feature.$Shape;
+             *   (properties?: vector_tile.Tile.Feature.$Properties): vector_tile.Tile.Feature;
+             * }}
+             */
+            Feature.create = function(properties) {
+                return new Feature(properties);
+            };
+
+            /**
+             * Encodes the specified Feature message. Does not implicitly {@link vector_tile.Tile.Feature.verify|verify} messages.
+             * @function encode
+             * @memberof vector_tile.Tile.Feature
+             * @static
+             * @param {vector_tile.Tile.Feature.$Properties} message Feature message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Feature.encode = function (message, writer, _depth) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $util.recursionLimit)
+                    throw $Error("max depth exceeded");
+                if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+                    writer.uint32(/* id 1, wireType 0 =*/8).uint64(message.id);
+                if (message.tags != null && message.tags.length)
+                    writer.uint32(/* id 2, wireType 2 =*/18).uint32s(message.tags);
+                if (message.type != null && $Object.hasOwnProperty.call(message, "type"))
+                    writer.uint32(/* id 3, wireType 0 =*/24).int32(message.type);
+                if (message.geometry != null && message.geometry.length)
+                    writer.uint32(/* id 4, wireType 2 =*/34).uint32s(message.geometry);
+                if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                    for (var i = 0; i < message.$unknowns.length; ++i)
+                        writer.raw(message.$unknowns[i]);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified Feature message, length delimited. Does not implicitly {@link vector_tile.Tile.Feature.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof vector_tile.Tile.Feature
+             * @static
+             * @param {vector_tile.Tile.Feature.$Properties} message Feature message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Feature.encodeDelimited = function(message, writer) {
+                return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+            };
+
+            /**
+             * Decodes a Feature message from the specified reader or buffer.
+             * @function decode
+             * @memberof vector_tile.Tile.Feature
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {vector_tile.Tile.Feature & vector_tile.Tile.Feature.$Shape} Feature
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Feature.decode = function (reader, length, _end, _depth, _target) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $Reader.recursionLimit)
+                    throw $Error("max depth exceeded");
+                var end, message, value;
+                if (length === $undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw $RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = _target || new $root.vector_tile.Tile.Feature();
+                while (reader.pos < end) {
+                    var start = reader.pos;
+                    var tag = reader.tag();
+                    if (tag === _end) {
+                        _end = $undefined;
+                        break;
+                    }
+                    var wireType = tag & 7;
+                    switch (tag >>>= 3) {
+                    case 1: {
+                            if (wireType !== 0)
+                                break;
+                            message.id = reader.uint64();
+                            continue;
+                        }
+                    case 2: {
+                            if (wireType === 2) {
+                                if (!(message.tags && message.tags.length))
+                                    message.tags = [];
+                                reader.uint32s(message.tags);
+                                continue;
+                            }
+                            if (wireType !== 0)
+                                break;
+                            if (!(message.tags && message.tags.length))
+                                message.tags = [];
+                            message.tags.push(reader.uint32());
+                            continue;
+                        }
+                    case 3: {
+                            if (wireType !== 0)
+                                break;
+                            value = reader.int32();
+                            if ($root.vector_tile.Tile.GeomType[value] !== $undefined)
+                                message.type = value;
+                            else if (!reader.discardUnknown) {
+                                $util.makeProp(message, "$unknowns", false);
+                                (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                            }
+                            continue;
+                        }
+                    case 4: {
+                            if (wireType === 2) {
+                                if (!(message.geometry && message.geometry.length))
+                                    message.geometry = [];
+                                reader.uint32s(message.geometry);
+                                continue;
+                            }
+                            if (wireType !== 0)
+                                break;
+                            if (!(message.geometry && message.geometry.length))
+                                message.geometry = [];
+                            message.geometry.push(reader.uint32());
+                            continue;
+                        }
+                    }
+                    reader.skipType(wireType, _depth, tag);
+                    if (!reader.discardUnknown) {
+                        $util.makeProp(message, "$unknowns", false);
+                        (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                    }
+                }
+                if (length !== $undefined) {
+                    if (reader.pos !== end)
+                        throw $RangeError("index out of range");
+                    reader.len = length;
+                }
+                if (_end !== $undefined)
+                    throw $Error("missing end group");
+                return message;
+            };
+
+            /**
+             * Decodes a Feature message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof vector_tile.Tile.Feature
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {vector_tile.Tile.Feature & vector_tile.Tile.Feature.$Shape} Feature
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Feature.decodeDelimited = function(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.size());
+            };
+
+            /**
+             * Verifies a Feature message.
+             * @function verify
+             * @memberof vector_tile.Tile.Feature
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Feature.verify = function (message, _depth) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $util.recursionLimit)
+                    return "max depth exceeded";
+                if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+                    if (!$util.isInteger(message.id) && !(message.id && $util.isInteger(message.id.low) && $util.isInteger(message.id.high)))
+                        return "id: integer|Long expected";
+                if (message.tags != null && $Object.hasOwnProperty.call(message, "tags")) {
+                    if (!$Array.isArray(message.tags))
+                        return "tags: array expected";
+                    for (var i = 0; i < message.tags.length; ++i)
+                        if (!$util.isInteger(message.tags[i]))
+                            return "tags: integer[] expected";
+                }
+                if (message.type != null && $Object.hasOwnProperty.call(message, "type"))
+                    switch (message.type) {
+                    default:
+                        return "type: enum value expected";
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                        break;
+                    }
+                if (message.geometry != null && $Object.hasOwnProperty.call(message, "geometry")) {
+                    if (!$Array.isArray(message.geometry))
+                        return "geometry: array expected";
+                    for (var i = 0; i < message.geometry.length; ++i)
+                        if (!$util.isInteger(message.geometry[i]))
+                            return "geometry: integer[] expected";
+                }
+                return null;
+            };
+
+            /**
+             * Creates a Feature message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof vector_tile.Tile.Feature
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {vector_tile.Tile.Feature} Feature
+             */
+            Feature.fromObject = function (object, _depth) {
+                if (object instanceof $root.vector_tile.Tile.Feature)
+                    return object;
+                if (!$util.isObject(object))
+                    throw $TypeError(".vector_tile.Tile.Feature: object expected");
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $util.recursionLimit)
+                    throw $Error("max depth exceeded");
+                var message = new $root.vector_tile.Tile.Feature();
+                if (object.id != null)
+                    if ($util.Long)
+                        message.id = $util.Long.fromValue(object.id, true);
+                    else if (typeof object.id === "string")
+                        message.id = $parseInt(object.id, 10);
+                    else if (typeof object.id === "number")
+                        message.id = object.id;
+                    else if (typeof object.id === "object")
+                        message.id = new $util.LongBits(object.id.low >>> 0, object.id.high >>> 0).toNumber(true);
+                if (object.tags) {
+                    if (!$Array.isArray(object.tags))
+                        throw $TypeError(".vector_tile.Tile.Feature.tags: array expected");
+                    message.tags = $Array(object.tags.length);
+                    for (var i = 0; i < object.tags.length; ++i)
+                        message.tags[i] = object.tags[i] >>> 0;
+                }
+                switch (object.type) {
+                case "UNKNOWN":
+                case 0:
+                    message.type = 0;
+                    break;
+                case "POINT":
+                case 1:
+                    message.type = 1;
+                    break;
+                case "LINESTRING":
+                case 2:
+                    message.type = 2;
+                    break;
+                case "POLYGON":
+                case 3:
+                    message.type = 3;
+                    break;
+                default:
+                }
+                if (object.geometry) {
+                    if (!$Array.isArray(object.geometry))
+                        throw $TypeError(".vector_tile.Tile.Feature.geometry: array expected");
+                    message.geometry = $Array(object.geometry.length);
+                    for (var i = 0; i < object.geometry.length; ++i)
+                        message.geometry[i] = object.geometry[i] >>> 0;
+                }
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a Feature message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof vector_tile.Tile.Feature
+             * @static
+             * @param {vector_tile.Tile.Feature} message Feature
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Feature.toObject = function (message, options, _depth) {
+                if (!options)
+                    options = {};
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $util.recursionLimit)
+                    throw $Error("max depth exceeded");
+                var object = {};
+                if (options.arrays || options.defaults) {
+                    object.tags = [];
+                    object.geometry = [];
+                }
+                if (options.defaults) {
+                    if ($util.Long) {
+                        var long = new $util.Long(0, 0, true);
+                        object.id = options.longs === $String ? long.toString() : options.longs === $Number ? long.toNumber() : typeof $BigInt !== "undefined" && options.longs === $BigInt ? long.toBigInt() : long;
+                    } else
+                        object.id = options.longs === $String ? "0" : typeof $BigInt !== "undefined" && options.longs === $BigInt ? $BigInt("0") : 0;
+                    object.type = options.enums === $String ? "UNKNOWN" : 0;
+                }
+                if (message.id != null && $Object.hasOwnProperty.call(message, "id"))
+                    if (typeof $BigInt !== "undefined" && options.longs === $BigInt)
+                        object.id = typeof message.id === "number" ? $BigInt(message.id) : $util.Long.fromBits(message.id.low >>> 0, message.id.high >>> 0, true).toBigInt();
+                    else if (typeof message.id === "number")
+                        object.id = options.longs === $String ? $String(message.id) : message.id;
+                    else
+                        object.id = options.longs === $String ? $util.Long.prototype.toString.call(message.id) : options.longs === $Number ? new $util.LongBits(message.id.low >>> 0, message.id.high >>> 0).toNumber(true) : message.id;
+                if (message.tags && message.tags.length) {
+                    object.tags = $Array(message.tags.length);
+                    for (var j = 0; j < message.tags.length; ++j)
+                        object.tags[j] = message.tags[j];
+                }
+                if (message.type != null && $Object.hasOwnProperty.call(message, "type"))
+                    object.type = options.enums === $String ? $root.vector_tile.Tile.GeomType[message.type] === $undefined ? message.type : $root.vector_tile.Tile.GeomType[message.type] : message.type;
+                if (message.geometry && message.geometry.length) {
+                    object.geometry = $Array(message.geometry.length);
+                    for (var j = 0; j < message.geometry.length; ++j)
+                        object.geometry[j] = message.geometry[j];
+                }
+                return object;
+            };
+
+            /**
+             * Converts this Feature to JSON.
+             * @function toJSON
+             * @memberof vector_tile.Tile.Feature
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Feature.prototype.toJSON = function() {
+                return Feature.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the type url for Feature
+             * @function getTypeUrl
+             * @memberof vector_tile.Tile.Feature
+             * @static
+             * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+             * @returns {string} The type url
+             */
+            Feature.getTypeUrl = function(prefix) {
+                if (prefix === $undefined)
+                    prefix = "type.googleapis.com";
+                return prefix + "/vector_tile.Tile.Feature";
+            };
+
+            return Feature;
+        })();
+
+        Tile.Layer = (function() {
+
+            /**
+             * Properties of a Layer.
+             * @typedef {Object} vector_tile.Tile.Layer.$Properties
+             * @property {number} version Layer version
+             * @property {string} name Layer name
+             * @property {Array.<vector_tile.Tile.Feature.$Properties>|null} [features] Layer features
+             * @property {Array.<string>|null} [keys] Layer keys
+             * @property {Array.<vector_tile.Tile.Value.$Properties>|null} [values] Layer values
+             * @property {number|null} [extent] Layer extent
+             * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+             */
+
+            /**
+             * Properties of a Layer.
+             * @memberof vector_tile.Tile
+             * @interface ILayer
+             * @augments vector_tile.Tile.Layer.$Properties
+             * @deprecated Use vector_tile.Tile.Layer.$Properties instead.
+             */
+
+            /**
+             * Shape of a Layer.
+             * @typedef {vector_tile.Tile.Layer.$Properties} vector_tile.Tile.Layer.$Shape
+             */
+
+            /**
+             * Constructs a new Layer.
+             * @memberof vector_tile.Tile
+             * @classdesc Represents a Layer.
+             * @constructor
+             * @param {vector_tile.Tile.Layer.$Properties=} [properties] Properties to set
+             * @property {Array.<Uint8Array>} [$unknowns] Unknown fields preserved while decoding when enabled
+             */
+            var Layer = function (properties) {
+                this.features = [];
+                this.keys = [];
+                this.values = [];
+                if (properties)
+                    for (var keys = $Object.keys(properties), i = 0; i < keys.length; ++i)
+                        if (properties[keys[i]] != null && keys[i] !== "__proto__")
+                            this[keys[i]] = properties[keys[i]];
+            };
+
+            /**
+             * Layer version.
+             * @member {number} version
+             * @memberof vector_tile.Tile.Layer
+             * @instance
+             */
+            Layer.prototype.version = 1;
+
+            /**
+             * Layer name.
+             * @member {string} name
+             * @memberof vector_tile.Tile.Layer
+             * @instance
+             */
+            Layer.prototype.name = "";
+
+            /**
+             * Layer features.
+             * @member {Array.<vector_tile.Tile.Feature.$Properties>} features
+             * @memberof vector_tile.Tile.Layer
+             * @instance
+             */
+            Layer.prototype.features = $util.emptyArray;
+
+            /**
+             * Layer keys.
+             * @member {Array.<string>} keys
+             * @memberof vector_tile.Tile.Layer
+             * @instance
+             */
+            Layer.prototype.keys = $util.emptyArray;
+
+            /**
+             * Layer values.
+             * @member {Array.<vector_tile.Tile.Value.$Properties>} values
+             * @memberof vector_tile.Tile.Layer
+             * @instance
+             */
+            Layer.prototype.values = $util.emptyArray;
+
+            /**
+             * Layer extent.
+             * @member {number} extent
+             * @memberof vector_tile.Tile.Layer
+             * @instance
+             */
+            Layer.prototype.extent = 4096;
+
+            /**
+             * Creates a new Layer instance using the specified properties.
+             * @function create
+             * @memberof vector_tile.Tile.Layer
+             * @static
+             * @param {vector_tile.Tile.Layer.$Properties=} [properties] Properties to set
+             * @returns {vector_tile.Tile.Layer} Layer instance
+             * @type {{
+             *   (properties: vector_tile.Tile.Layer.$Shape): vector_tile.Tile.Layer & vector_tile.Tile.Layer.$Shape;
+             *   (properties?: vector_tile.Tile.Layer.$Properties): vector_tile.Tile.Layer;
+             * }}
+             */
+            Layer.create = function(properties) {
+                return new Layer(properties);
+            };
+
+            /**
+             * Encodes the specified Layer message. Does not implicitly {@link vector_tile.Tile.Layer.verify|verify} messages.
+             * @function encode
+             * @memberof vector_tile.Tile.Layer
+             * @static
+             * @param {vector_tile.Tile.Layer.$Properties} message Layer message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Layer.encode = function (message, writer, _depth) {
+                if (!writer)
+                    writer = $Writer.create();
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $util.recursionLimit)
+                    throw $Error("max depth exceeded");
+                writer.uint32(/* id 1, wireType 2 =*/10).string(message.name);
+                if (message.features != null && message.features.length)
+                    for (var i = 0; i < message.features.length; ++i)
+                        $root.vector_tile.Tile.Feature.encode(message.features[i], writer.uint32(/* id 2, wireType 2 =*/18).fork(), _depth + 1).ldelim();
+                if (message.keys != null && message.keys.length)
+                    for (var i = 0; i < message.keys.length; ++i)
+                        writer.uint32(/* id 3, wireType 2 =*/26).string(message.keys[i]);
+                if (message.values != null && message.values.length)
+                    for (var i = 0; i < message.values.length; ++i)
+                        $root.vector_tile.Tile.Value.encode(message.values[i], writer.uint32(/* id 4, wireType 2 =*/34).fork(), _depth + 1).ldelim();
+                if (message.extent != null && $Object.hasOwnProperty.call(message, "extent"))
+                    writer.uint32(/* id 5, wireType 0 =*/40).uint32(message.extent);
+                writer.uint32(/* id 15, wireType 0 =*/120).uint32(message.version);
+                if (message.$unknowns != null && $Object.hasOwnProperty.call(message, "$unknowns"))
+                    for (var i = 0; i < message.$unknowns.length; ++i)
+                        writer.raw(message.$unknowns[i]);
+                return writer;
+            };
+
+            /**
+             * Encodes the specified Layer message, length delimited. Does not implicitly {@link vector_tile.Tile.Layer.verify|verify} messages.
+             * @function encodeDelimited
+             * @memberof vector_tile.Tile.Layer
+             * @static
+             * @param {vector_tile.Tile.Layer.$Properties} message Layer message or plain object to encode
+             * @param {$protobuf.Writer} [writer] Writer to encode to
+             * @returns {$protobuf.Writer} Writer
+             */
+            Layer.encodeDelimited = function(message, writer) {
+                return this.encode(message, (writer || $Writer.create()).fork()).ldelim();
+            };
+
+            /**
+             * Decodes a Layer message from the specified reader or buffer.
+             * @function decode
+             * @memberof vector_tile.Tile.Layer
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @param {number} [length] Message length if known beforehand
+             * @returns {vector_tile.Tile.Layer & vector_tile.Tile.Layer.$Shape} Layer
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Layer.decode = function (reader, length, _end, _depth, _target) {
+                if (!(reader instanceof $Reader))
+                    reader = $Reader.create(reader);
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $Reader.recursionLimit)
+                    throw $Error("max depth exceeded");
+                var end, message;
+                if (length === $undefined)
+                    end = reader.len;
+                else {
+                    end = reader.pos + length;
+                    if (end > reader.len)
+                        throw $RangeError("index out of range");
+                    length = reader.len;
+                    reader.len = end;
+                }
+                message = _target || new $root.vector_tile.Tile.Layer();
+                while (reader.pos < end) {
+                    var start = reader.pos;
+                    var tag = reader.tag();
+                    if (tag === _end) {
+                        _end = $undefined;
+                        break;
+                    }
+                    var wireType = tag & 7;
+                    switch (tag >>>= 3) {
+                    case 15: {
+                            if (wireType !== 0)
+                                break;
+                            message.version = reader.uint32();
+                            continue;
+                        }
+                    case 1: {
+                            if (wireType !== 2)
+                                break;
+                            message.name = reader.string();
+                            continue;
+                        }
+                    case 2: {
+                            if (wireType !== 2)
+                                break;
+                            if (!(message.features && message.features.length))
+                                message.features = [];
+                            message.features.push($root.vector_tile.Tile.Feature.decode(reader, reader.size(), $undefined, _depth + 1));
+                            continue;
+                        }
+                    case 3: {
+                            if (wireType !== 2)
+                                break;
+                            if (!(message.keys && message.keys.length))
+                                message.keys = [];
+                            message.keys.push(reader.string());
+                            continue;
+                        }
+                    case 4: {
+                            if (wireType !== 2)
+                                break;
+                            if (!(message.values && message.values.length))
+                                message.values = [];
+                            message.values.push($root.vector_tile.Tile.Value.decode(reader, reader.size(), $undefined, _depth + 1));
+                            continue;
+                        }
+                    case 5: {
+                            if (wireType !== 0)
+                                break;
+                            message.extent = reader.uint32();
+                            continue;
+                        }
+                    }
+                    reader.skipType(wireType, _depth, tag);
+                    if (!reader.discardUnknown) {
+                        $util.makeProp(message, "$unknowns", false);
+                        (message.$unknowns || (message.$unknowns = [])).push(reader.raw(start, reader.pos));
+                    }
+                }
+                if (length !== $undefined) {
+                    if (reader.pos !== end)
+                        throw $RangeError("index out of range");
+                    reader.len = length;
+                }
+                if (_end !== $undefined)
+                    throw $Error("missing end group");
+                if (!$Object.hasOwnProperty.call(message, "version"))
+                    throw $util.ProtocolError("missing required 'version'", { instance: message });
+                if (!$Object.hasOwnProperty.call(message, "name"))
+                    throw $util.ProtocolError("missing required 'name'", { instance: message });
+                return message;
+            };
+
+            /**
+             * Decodes a Layer message from the specified reader or buffer, length delimited.
+             * @function decodeDelimited
+             * @memberof vector_tile.Tile.Layer
+             * @static
+             * @param {$protobuf.Reader|Uint8Array} reader Reader or buffer to decode from
+             * @returns {vector_tile.Tile.Layer & vector_tile.Tile.Layer.$Shape} Layer
+             * @throws {Error} If the payload is not a reader or valid buffer
+             * @throws {$protobuf.util.ProtocolError} If required fields are missing
+             */
+            Layer.decodeDelimited = function(reader) {
+                if (!(reader instanceof $Reader))
+                    reader = new $Reader(reader);
+                return this.decode(reader, reader.size());
+            };
+
+            /**
+             * Verifies a Layer message.
+             * @function verify
+             * @memberof vector_tile.Tile.Layer
+             * @static
+             * @param {Object.<string,*>} message Plain object to verify
+             * @returns {string|null} `null` if valid, otherwise the reason why it is not
+             */
+            Layer.verify = function (message, _depth) {
+                if (typeof message !== "object" || message === null)
+                    return "object expected";
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $util.recursionLimit)
+                    return "max depth exceeded";
+                if (!$util.isInteger(message.version))
+                    return "version: integer expected";
+                if (!$util.isString(message.name))
+                    return "name: string expected";
+                if (message.features != null && $Object.hasOwnProperty.call(message, "features")) {
+                    if (!$Array.isArray(message.features))
+                        return "features: array expected";
+                    for (var i = 0; i < message.features.length; ++i) {
+                        var error = $root.vector_tile.Tile.Feature.verify(message.features[i], _depth + 1);
+                        if (error)
+                            return "features." + error;
+                    }
+                }
+                if (message.keys != null && $Object.hasOwnProperty.call(message, "keys")) {
+                    if (!$Array.isArray(message.keys))
+                        return "keys: array expected";
+                    for (var i = 0; i < message.keys.length; ++i)
+                        if (!$util.isString(message.keys[i]))
+                            return "keys: string[] expected";
+                }
+                if (message.values != null && $Object.hasOwnProperty.call(message, "values")) {
+                    if (!$Array.isArray(message.values))
+                        return "values: array expected";
+                    for (var i = 0; i < message.values.length; ++i) {
+                        var error = $root.vector_tile.Tile.Value.verify(message.values[i], _depth + 1);
+                        if (error)
+                            return "values." + error;
+                    }
+                }
+                if (message.extent != null && $Object.hasOwnProperty.call(message, "extent"))
+                    if (!$util.isInteger(message.extent))
+                        return "extent: integer expected";
+                return null;
+            };
+
+            /**
+             * Creates a Layer message from a plain object. Also converts values to their respective internal types.
+             * @function fromObject
+             * @memberof vector_tile.Tile.Layer
+             * @static
+             * @param {Object.<string,*>} object Plain object
+             * @returns {vector_tile.Tile.Layer} Layer
+             */
+            Layer.fromObject = function (object, _depth) {
+                if (object instanceof $root.vector_tile.Tile.Layer)
+                    return object;
+                if (!$util.isObject(object))
+                    throw $TypeError(".vector_tile.Tile.Layer: object expected");
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $util.recursionLimit)
+                    throw $Error("max depth exceeded");
+                var message = new $root.vector_tile.Tile.Layer();
+                if (object.version != null)
+                    message.version = object.version >>> 0;
+                if (object.name != null)
+                    message.name = $String(object.name);
+                if (object.features) {
+                    if (!$Array.isArray(object.features))
+                        throw $TypeError(".vector_tile.Tile.Layer.features: array expected");
+                    message.features = $Array(object.features.length);
+                    for (var i = 0; i < object.features.length; ++i) {
+                        if (!$util.isObject(object.features[i]))
+                            throw $TypeError(".vector_tile.Tile.Layer.features: object expected");
+                        message.features[i] = $root.vector_tile.Tile.Feature.fromObject(object.features[i], _depth + 1);
+                    }
+                }
+                if (object.keys) {
+                    if (!$Array.isArray(object.keys))
+                        throw $TypeError(".vector_tile.Tile.Layer.keys: array expected");
+                    message.keys = $Array(object.keys.length);
+                    for (var i = 0; i < object.keys.length; ++i)
+                        message.keys[i] = $String(object.keys[i]);
+                }
+                if (object.values) {
+                    if (!$Array.isArray(object.values))
+                        throw $TypeError(".vector_tile.Tile.Layer.values: array expected");
+                    message.values = $Array(object.values.length);
+                    for (var i = 0; i < object.values.length; ++i) {
+                        if (!$util.isObject(object.values[i]))
+                            throw $TypeError(".vector_tile.Tile.Layer.values: object expected");
+                        message.values[i] = $root.vector_tile.Tile.Value.fromObject(object.values[i], _depth + 1);
+                    }
+                }
+                if (object.extent != null)
+                    message.extent = object.extent >>> 0;
+                return message;
+            };
+
+            /**
+             * Creates a plain object from a Layer message. Also converts values to other types if specified.
+             * @function toObject
+             * @memberof vector_tile.Tile.Layer
+             * @static
+             * @param {vector_tile.Tile.Layer} message Layer
+             * @param {$protobuf.IConversionOptions} [options] Conversion options
+             * @returns {Object.<string,*>} Plain object
+             */
+            Layer.toObject = function (message, options, _depth) {
+                if (!options)
+                    options = {};
+                if (_depth === $undefined)
+                    _depth = 0;
+                if (_depth > $util.recursionLimit)
+                    throw $Error("max depth exceeded");
+                var object = {};
+                if (options.arrays || options.defaults) {
+                    object.features = [];
+                    object.keys = [];
+                    object.values = [];
+                }
+                if (options.defaults) {
+                    object.name = "";
+                    object.extent = 4096;
+                    object.version = 1;
+                }
+                if (message.name != null && $Object.hasOwnProperty.call(message, "name"))
+                    object.name = message.name;
+                if (message.features && message.features.length) {
+                    object.features = $Array(message.features.length);
+                    for (var j = 0; j < message.features.length; ++j)
+                        object.features[j] = $root.vector_tile.Tile.Feature.toObject(message.features[j], options, _depth + 1);
+                }
+                if (message.keys && message.keys.length) {
+                    object.keys = $Array(message.keys.length);
+                    for (var j = 0; j < message.keys.length; ++j)
+                        object.keys[j] = message.keys[j];
+                }
+                if (message.values && message.values.length) {
+                    object.values = $Array(message.values.length);
+                    for (var j = 0; j < message.values.length; ++j)
+                        object.values[j] = $root.vector_tile.Tile.Value.toObject(message.values[j], options, _depth + 1);
+                }
+                if (message.extent != null && $Object.hasOwnProperty.call(message, "extent"))
+                    object.extent = message.extent;
+                if (message.version != null && $Object.hasOwnProperty.call(message, "version"))
+                    object.version = message.version;
+                return object;
+            };
+
+            /**
+             * Converts this Layer to JSON.
+             * @function toJSON
+             * @memberof vector_tile.Tile.Layer
+             * @instance
+             * @returns {Object.<string,*>} JSON object
+             */
+            Layer.prototype.toJSON = function() {
+                return Layer.toObject(this, $protobuf.util.toJSONOptions);
+            };
+
+            /**
+             * Gets the type url for Layer
+             * @function getTypeUrl
+             * @memberof vector_tile.Tile.Layer
+             * @static
+             * @param {string} [prefix] Custom type url prefix, defaults to `"type.googleapis.com"`
+             * @returns {string} The type url
+             */
+            Layer.getTypeUrl = function(prefix) {
+                if (prefix === $undefined)
+                    prefix = "type.googleapis.com";
+                return prefix + "/vector_tile.Tile.Layer";
+            };
+
+            return Layer;
+        })();
+
+        return Tile;
+    })();
+
+    return vector_tile;
+})();
+
+module.exports = $root;
